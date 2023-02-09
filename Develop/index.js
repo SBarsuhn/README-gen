@@ -37,8 +37,9 @@ inquirer
         name: "collab",
     },
     {
-        type:"input",
-        message: "The last section of a high-quality README file is the license. This lets other developers know what they can and cannot do with your project. If you need help choosing a license, refer to [https://choosealicense.com/](https://choosealicense.com/).",
+        type:"list",
+        choices: [ "MIT", new inquirer.Separator(), "GPLv2", new inquirer.Separator(), "Apache", new inquirer.Separator(), "GPLv3", new inquirer.Separator(), "Unlicense", new inquirer.Separator() ],
+        message: "What license, if any, did you use for this project? If you need help choosing a license, refer to [https://choosealicense.com/](https://choosealicense.com/).",
         name: "license",
     },
     {
