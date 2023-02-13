@@ -1,8 +1,7 @@
-// TODO: Include packages needed for this application
+
 const inquirer = require('inquirer');
 const fs = require('fs');
-// TODO: Create an array of questions for user input
-// const questions = [
+
     
 inquirer
   .prompt([
@@ -15,11 +14,6 @@ inquirer
         type:"input",
         message: "Provide a short description explaining the what, why, and how of your project.",
         name: "description",
-    },
-    {
-        type:"input",
-        message: "If your README is long, add a table of contents to make it easy for users to find what they need.",
-        name: "toc",
     },
     {
         type:"input",
@@ -38,7 +32,7 @@ inquirer
     },
     {
         type:"list",
-        choices: [ "MIT", new inquirer.Separator(), "GPLv2", new inquirer.Separator(), "Apache", new inquirer.Separator(), "GPLv3", new inquirer.Separator(), "Unlicense", new inquirer.Separator() ],
+        choices: [ "MIT", new inquirer.Separator(), "GPLv2", new inquirer.Separator(), "Apache", new inquirer.Separator(), "GPLv3", new inquirer.Separator(), "Unlicensed", new inquirer.Separator() ],
         message: "What license, if any, did you use for this project? If you need help choosing a license, refer to [https://choosealicense.com/](https://choosealicense.com/).",
         name: "license",
     },
@@ -57,24 +51,69 @@ inquirer
         message: "Go the extra mile and write tests for your application. Then provide examples on how to run them here.",
         name: "tests",
     },
+    {
+        type:"input",
+        message: "What is your github username?",
+        name: "questions",
+    },
+    {
+        type:"input",
+        message: "what is your email address?",
+        name:"questions2",
+    }
   ])
 
-// TODO: Create a function to write README file
-// function writeToFile(filename, data) {
-// }
-.then((response) =>
-fs.writeFile('README.md', `# ${response.title}\n\n## DESCRIPTION\n\n${response.description}\n\n## TABLE OF CONTENTS\n\n${response.toc}\n\n## INSTALLATION\n\n${response.install}\n\n## USAGE\n\n${response.usage}\n\n## COLLABORATORS\n\n${response.collab}\n\n## LICENSE\n\n${response.license}\n\n## FEATURES\n\n${response.features}\n\n## HOW TO CONTRIBUTE\n\n${response.contribute}\n\n## TESTS\n\n${response.tests}`, (err) =>
+.then((response) => {
+function renderLicenseBadge(license) {
+if (license !=="Unlicensed"){
+    return`![Github license](https://img.shields.io/badge/license-${license}-blue.svg)`
+} else {
+    return ""
+}
+}
+function renderLicenseLink(license) {
+    if (license !=="Unlicensed"){
+        return`* [license](#license)\n`
+    } else {
+        return ""
+    }
+}
+
+function renderLicenseSection(license) {
+    if (license !=="Unlicensed"){
+        return`This project was licensed under ${license} license`
+    } else {
+        return ""
+    }
+}
+fs.writeFile('README.md', `# ${response.title}
+${renderLicenseBadge(response.license)}\n
+
+\n
+## DESCRIPTION\n\n- ${response.description}\n\n
+## TABLE OF CONTENTS\n\n
+* [Install](#install)\n
+* [Usage](#usage)\n
+* [Collaborators](#collaborators)\n
+${renderLicenseLink(response.license)}
+* [Features](#features)\n
+* [Contribute](#contribute)\n
+* [Tests](#tests)\n
+* [Questions](#questions)\n\n
+## INSTALLATION\n\n- ${response.install}\n\n
+## USAGE\n\n- ${response.usage}\n\n
+## COLLABORATORS\n\n- ${response.collab}\n\n
+## LICENSE\n\n- ${renderLicenseSection(response.license)}\n\n
+## FEATURES\n\n- ${response.features}\n\n
+## HOW TO CONTRIBUTE\n\n- ${response.contribute}\n\n
+## TESTS\n\n- ${response.tests}\n\n
+## Questions\n\n- Github Profile: https://github.com/${response.questions}\n
+- Email: ${response.questions2} `, (err) =>
 
 err ? console.error(err) : console.log('README Generated')
 )
+}
 );
-// TODO: Create a function to initialize app
-// function init() {}
-
-// Function call to initialize app
-// init();
-
-
 
 // npm init -y
 // npm i inquirer@8.2.4
