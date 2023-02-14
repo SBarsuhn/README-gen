@@ -1,8 +1,8 @@
-
+// This is the required software that makes the application work properly.
 const inquirer = require('inquirer');
 const fs = require('fs');
 
-    
+    // These are the prompts that the application will use to create the readme. the ones labled "input" let you type in your answer and the one labled "list" lets you pick from a set list of options. The "name" of each prompt is how they are targeted later in the code.
 inquirer
   .prompt([
     {
@@ -62,7 +62,7 @@ inquirer
         name:"questions2",
     }
   ])
-
+// This function will add the license badge as long as the user picks a license
 .then((response) => {
 function renderLicenseBadge(license) {
 if (license !=="Unlicensed"){
@@ -71,6 +71,7 @@ if (license !=="Unlicensed"){
     return ""
 }
 }
+// This function will add the license section to the table of contents if the user picks a license
 function renderLicenseLink(license) {
     if (license !=="Unlicensed"){
         return`* [license](#license)\n`
@@ -78,7 +79,7 @@ function renderLicenseLink(license) {
         return ""
     }
 }
-
+// This function adds text to the license section of the readme saying which license is being used
 function renderLicenseSection(license) {
     if (license !=="Unlicensed"){
         return`This project was licensed under ${license} license`
@@ -86,15 +87,14 @@ function renderLicenseSection(license) {
         return ""
     }
 }
+// This creates a file titled "README.md". It then adds all of the user input in the correct spots in the README
 fs.writeFile('README.md', `# ${response.title}
-${renderLicenseBadge(response.license)}\n
-
-\n
+${renderLicenseBadge(response.license)}\n\n
 ## DESCRIPTION\n\n- ${response.description}\n\n
 ## TABLE OF CONTENTS\n\n
 * [Install](#install)\n
 * [Usage](#usage)\n
-* [Collaborators](#collaborators)\n
+* [Collaborators](#collab)\n
 ${renderLicenseLink(response.license)}
 * [Features](#features)\n
 * [Contribute](#contribute)\n
@@ -107,9 +107,10 @@ ${renderLicenseLink(response.license)}
 ## FEATURES\n\n- ${response.features}\n\n
 ## HOW TO CONTRIBUTE\n\n- ${response.contribute}\n\n
 ## TESTS\n\n- ${response.tests}\n\n
-## Questions\n\n- Github Profile: https://github.com/${response.questions}\n
+## Questions\n\n- If you have any questions please feel free to contact me on github or by email.\n
+- Github Profile: https://github.com/${response.questions}\n
 - Email: ${response.questions2} `, (err) =>
-
+// This lets you know in the terminal when your README has been generated
 err ? console.error(err) : console.log('README Generated')
 )
 }

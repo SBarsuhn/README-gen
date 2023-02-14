@@ -16,15 +16,11 @@
 
 * [Usage](#usage)
 
-* [Collaborators](#collaborators)
-
 * [license](#license)
 
 * [Features](#features)
 
 * [Contribute](#contribute)
-
-* [Tests](#tests)
 
 * [Questions](#questions)
 
@@ -55,6 +51,8 @@
 
 
 ## Questions
+
+- If you have any questions please feel free to contact me on github or by email.
 
 - Github Profile: https://github.com/SBarsuhn
 
