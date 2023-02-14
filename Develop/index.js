@@ -87,6 +87,14 @@ function renderLicenseSection(license) {
         return ""
     }
 }
+
+function renderLicenseHeader(license) {
+    if (license !=="Unlicensed"){
+        return`## LICENSE\n\n`
+    } else {
+        return ""
+    }
+}
 // This creates a file titled "README.md". It then adds all of the user input in the correct spots in the README
 fs.writeFile('README.md', `# ${response.title}
 ${renderLicenseBadge(response.license)}\n\n
@@ -103,7 +111,7 @@ ${renderLicenseLink(response.license)}
 ## INSTALLATION\n\n- ${response.install}\n\n
 ## USAGE\n\n- ${response.usage}\n\n
 ## COLLABORATORS\n\n- ${response.collab}\n\n
-## LICENSE\n\n- ${renderLicenseSection(response.license)}\n\n
+${renderLicenseHeader(response.license)}- ${renderLicenseSection(response.license)}\n\n
 ## FEATURES\n\n- ${response.features}\n\n
 ## HOW TO CONTRIBUTE\n\n- ${response.contribute}\n\n
 ## TESTS\n\n- ${response.tests}\n\n
