@@ -34,7 +34,7 @@
 
 - Run the application by typing node .\index.js in the terminal and answer the questions it asks you. This can be used with almost any project and will save a lot of time since you will not have to do any of the formatting that would noramlly be required when typing out a README by hand.
 
-- [Example Video](../example%20video/EXAMPLE.mp4)
+- [Example Video](example%20video/EXAMPLE.mp4)
 
 ## LICENSE
 
